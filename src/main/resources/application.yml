@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: gateway-service
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:7001}
+  data:
+    redis:
+      host: ${REDIS_URI:localhost}
+      port: ${REDIS_PORT:6379}
+  cloud:
+    gateway:
+      filter:
+        secure-headers.frame-options: SAMEORIGIN
+  # Datasource configuration
+  datasource:
+    url: jdbc:postgresql://${DB_URI:localhost:5432}/${DB_NAME:testdatabase}
+    driver-class-name: org.postgresql.Driver
+    username: ${SPRING_DATASOURCE_USERNAME:nitesh}
+    password: ${SPRING_DATASOURCE_PASSWORD:mypassword}
+    platform: postgres
+    schema: ${DB_SCHEMA_NAME:platform_core}  # Default schema for JPA
+    hikari:
+      pool-name: HikariCP
+      maximum-pool-size: 100
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        default_schema: ${DB_SCHEMA_NAME:platform_core}
+
+  # Flyway configuration
+  flyway:
+    enabled: true
+    schemas: ${DB_SCHEMA_NAME:platform_core}  # Schema for Flyway migrations
+    placeholder-prefix: "$$${"
+    placeholder-suffix: "}$$$"
+
+server:
+  port: ${APP_PORT:8001}
+
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVER_URL:http://localhost:8761/eureka}
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,metrics,prometheus"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
