@@ -62,7 +62,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "health,metrics,prometheus"
+        include: "*"
   endpoint:
     health:
       show-details: always
