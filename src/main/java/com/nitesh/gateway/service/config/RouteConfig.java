@@ -62,7 +62,7 @@ public class RouteConfig implements RouteLocator{
 
     @Override
     public Flux<Route> getRoutes() {
-        log.info("Entered into building rotes " + apiRouteService.findApiRoutes().size() + "  " + apiRouteService.findApiRoutes());
+        log.debug("Entered into building rotes " + apiRouteService.findApiRoutes().size() + "  " + apiRouteService.findApiRoutes());
 //        RouteLocatorBuilder.Builder routesBuilder = routeLocatorBuilder.routes();
 //        Flux<ApiRoute> apiRouteFlux = Flux.fromStream(apiRouteService.findApiRoutes().stream());
 //        apiRouteFlux

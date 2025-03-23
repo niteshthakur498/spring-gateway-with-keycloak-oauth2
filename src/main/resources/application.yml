@@ -25,7 +25,7 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
+    show-sql: false
     database: POSTGRESQL
     properties:
       hibernate:
@@ -38,6 +38,11 @@ spring:
     placeholder-prefix: "$$${"
     placeholder-suffix: "}$$$"
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://${KEYCLOAK_URL:localhost:9090}/realms/${KEYCLOAK_REALM:ms-core-realm}
 server:
   port: ${APP_PORT:8001}
 
