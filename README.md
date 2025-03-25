@@ -2,7 +2,7 @@
 
 This **Spring Cloud Gateway** service acts as an **API Gateway** for microservices, providing:  
 ✅ **Dynamic Route Management** – Routes are stored in **PostgreSQL** and dynamically loaded.  
-✅ **Rate Limiting** – Uses **Redis** for request rate limiting per client.  
+✅ **Rate Limiting** – Uses **Redis** for request rate limiting per hostname.  
 ✅ **Authentication & Authorization** – Integrated with **Keycloak & OAuth2** via **Spring Security**.  
 ✅ **Resilience & Security** – Supports filters, logging, and global exception handling.  
 
